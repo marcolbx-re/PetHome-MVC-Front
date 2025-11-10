@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHome MVC Front", "PetHome MVC Front.csproj", "{3EDB43EB-D2FC-47DC-9372-42CB322CBBE5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3EDB43EB-D2FC-47DC-9372-42CB322CBBE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EDB43EB-D2FC-47DC-9372-42CB322CBBE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EDB43EB-D2FC-47DC-9372-42CB322CBBE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EDB43EB-D2FC-47DC-9372-42CB322CBBE5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6BD5FB9A-A025-4ABC-A34D-85DCC058C4D5}
+	EndGlobalSection
+EndGlobal
