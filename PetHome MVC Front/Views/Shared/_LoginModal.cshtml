@@ -1,0 +1,144 @@
+﻿@model PetHome_MVC_Front.Models.LoginViewModel
+
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-5 shadow-lg">
+            
+            <!-- Modal Header -->
+            <div class="modal-header border-bottom-0 justify-content-center">
+                <h3 class="modal-title text-center fw-bold" id="loginModalLabel">
+                    Login to PetHome
+                </h3>
+                <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body px-5">
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "loginForm" }))
+                {
+                    <div class="mb-4">
+                        <label asp-for="Email" class="form-label fw-semibold">Email</label>
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter your email" })
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Password" class="form-label fw-semibold">Password</label>
+                        <div class="input-group">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter your password" })
+                        </div>
+                    </div>
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger mb-3 text-center" })
+
+                    <div class="d-grid mb-3">
+                        <button type="submit" class="btn btn-primary btn-lg rounded-pill fw-bold">
+                            Login
+                        </button>
+                    </div>
+
+                    <p class="text-center text-muted mb-0">
+                        Don't have an account? <a href="#" class="fw-semibold" onclick="switchToRegisterModal(event)">Register</a>
+                    </p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Switch to Register Modal -->
+<script>
+    function switchToRegisterModal(event) {
+        event.preventDefault();
+        var loginModalEl = document.getElementById('loginModal');
+        var loginModal = bootstrap.Modal.getInstance(loginModalEl) || new bootstrap.Modal(loginModalEl);
+        loginModal.hide();
+
+        setTimeout(function() {
+            var registerModalEl = document.getElementById('registerModal');
+            var registerModal = bootstrap.Modal.getOrCreateInstance(registerModalEl);
+            registerModal.show();
+        }, 250);
+    }
+</script>
+
+<!-- Handle Login Form Submission -->
+<script>
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const obj = Object.fromEntries(formData.entries());
+
+    try {
+        const response = await fetch('/Account/Login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(obj)
+        });
+
+        if (response.ok) {
+            const profile = await response.json(); // { email, token, username, fullName }
+
+            // ----------------------------
+            // STORE JWT AND USER INFO
+            // ----------------------------
+            localStorage.setItem('jwtToken', profile.token);               // JWT for authenticated requests
+            localStorage.setItem('userFullName', profile.fullName || profile.username); // Display name
+            localStorage.setItem('userEmail', profile.email);             // Optional, for UI
+
+            // Close Login modal
+            var loginModalEl = document.getElementById('loginModal');
+            var loginModal = bootstrap.Modal.getInstance(loginModalEl);
+            loginModal.hide();
+
+            // Update navbar or UI
+            alert('1111111');
+            updateUIAfterLogin(profile);
+
+        } else {
+            const error = await response.json();
+            alert('Login failed: ' + (error?.message || 'Unknown error'));
+        }
+    } catch (err) {
+        console.error(err);
+        alert('An error occurred. Please try again.');
+    }
+});
+
+// Example UI update function
+function updateUIAfterLogin(profile) {
+    // Hide login/register buttons
+    alert('2222222');
+    document.getElementById('loginBtn').style.display = 'none';
+    document.getElementById('registerBtn').style.display = 'none';
+    alert('3333333');
+    // Show user's name in navbar
+    const userDisplay = document.getElementById('userDisplay');
+    if (userDisplay) {
+        userDisplay.textContent = `Hello, ${profile.fullName || profile.username}`;
+        userDisplay.style.display = 'inline-block';
+    }
+    alert('444444');
+    // Show logout button
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) logoutBtn.style.display = 'inline-block';
+}
+
+// Optional: logout function to clear LocalStorage and reset UI
+function logout() {
+    localStorage.removeItem('jwtToken');
+    localStorage.removeItem('userFullName');
+    localStorage.removeItem('userEmail');
+
+    document.getElementById('loginBtn').style.display = 'inline-block';
+    document.getElementById('registerBtn').style.display = 'inline-block';
+
+    const userDisplay = document.getElementById('userDisplay');
+    if (userDisplay) userDisplay.style.display = 'none';
+
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) logoutBtn.style.display = 'none';
+}
+</script>

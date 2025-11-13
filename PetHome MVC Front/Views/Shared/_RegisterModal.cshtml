@@ -1,0 +1,148 @@
+﻿@model PetHome_MVC_Front.Models.RegisterAsOwnerViewModel
+<!-- Register Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow-lg rounded-5">
+
+            <!-- Modal Header -->
+            <div class="modal-header border-bottom-0 justify-content-center">
+                <h3 class="modal-title text-center fw-bold" id="registerModalLabel">
+                    Register for PetHome
+                </h3>
+                <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body px-5 py-4">
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "registerForm" }))
+                {
+                    <!-- Name Fields -->
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label asp-for="FirstName" class="form-label fw-semibold">First Name</label>
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control rounded-pill", placeholder = "First Name" })
+                        </div>
+                        <div class="col">
+                            <label asp-for="LastName" class="form-label fw-semibold">Last Name</label>
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control rounded-pill", placeholder = "Last Name" })
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label fw-semibold">Email</label>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control rounded-pill", placeholder = "Enter your email" })
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="mb-3">
+                        <label asp-for="PhoneNumber" class="form-label fw-semibold">Phone Number</label>
+                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control rounded-pill", placeholder = "Phone Number" })
+                    </div>
+
+                    <!-- Identification -->
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label asp-for="IdentificationType" class="form-label fw-semibold">ID Type</label>
+                            @Html.DropDownListFor(
+                                m => m.IdentificationType, 
+                                Enum.GetValues(typeof(PetHome_MVC_Front.Models.IdentificationType))
+                                    .Cast<IdentificationType>()
+                                    .Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }),
+                                "Select",
+                                new { @class = "form-select rounded-pill" }
+                            )
+                        </div>
+                        <div class="col">
+                            <label asp-for="IdentificationNumber" class="form-label fw-semibold">ID Number</label>
+                            @Html.TextBoxFor(m => m.IdentificationNumber, new { @class = "form-control rounded-pill", placeholder = "ID Number" })
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label fw-semibold">Password</label>
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control rounded-pill", placeholder = "Enter your password" })
+                    </div>
+
+                    <!-- Newsletter Subscription -->
+                    <div class="form-check form-switch mb-3">
+                        @Html.CheckBoxFor(m => m.IsNewsletterSubscribed, new { @class = "form-check-input", id = "newsletterSwitch" })
+                        <label class="form-check-label fw-semibold" for="newsletterSwitch">Subscribe to Newsletter</label>
+                    </div>
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger mb-3 text-center" })
+
+                    <!-- Register Button -->
+                    <div class="d-grid mb-3">
+                        <button type="submit" class="btn btn-success btn-lg rounded-pill fw-bold">Register</button>
+                    </div>
+
+                    <p class="text-center text-muted mb-0">
+                        Already have an account? 
+                        <a href="#" class="fw-semibold" onclick="switchToLoginModal(event)">Login</a>
+                        </p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function switchToLoginModal(event) {
+        event.preventDefault();
+        // Hide Register modal
+        var registerModalEl = document.getElementById('registerModal');
+        var registerModal = bootstrap.Modal.getInstance(registerModalEl) || new bootstrap.Modal(registerModalEl);
+        registerModal.hide();
+
+        // Show Login modal after small delay
+        setTimeout(function() {
+            var loginModalEl = document.getElementById('loginModal');
+            var loginModal = bootstrap.Modal.getOrCreateInstance(loginModalEl);
+            loginModal.show();
+        }, 250); // wait for animation to finish
+    }
+</script>
+
+
+<script>
+document.getElementById('registerForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    // Serialize form data to JSON
+    const formData = new FormData(this);
+    const obj = Object.fromEntries(formData.entries());
+
+    try {
+        const response = await fetch('/Account/Register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(obj)
+        });
+
+        if (response.ok) {
+            // Close the Register modal
+            var registerModalEl = document.getElementById('registerModal');
+            var registerModal = bootstrap.Modal.getInstance(registerModalEl);
+            registerModal.hide();
+
+            // Show success toast
+            var toastEl = document.getElementById('successToast');
+            var toast = new bootstrap.Toast(toastEl);
+            toast.show();
+
+            // Optionally, reset form
+            this.reset();
+        } else {
+            const data = await response.json();
+            // Handle backend validation errors here (optional)
+            alert('Registration failed: ' + (data?.message || 'Unknown error'));
+        }
+    } catch (err) {
+        console.error(err);
+        alert('An error occurred. Please try again.');
+    }
+});
+</script>

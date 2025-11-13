@@ -15,100 +15,80 @@
     var userName = User?.Identity?.Name ?? "";
 }
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm py-3">
-        <div class="container">
-            <!-- Brand -->
-            <a class="navbar-brand fw-bold fs-4 text-primary" asp-controller="Home" asp-action="Index">
-                PetHome
-            </a>
-
-            <!-- Toggler (for mobile) -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-                    aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-                <!-- Right-aligned Login/Register or User menu -->
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
-                    </li>
-                    @if (isLoggedIn)
-                    {
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-person-circle"></i> @userName
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" asp-controller="Account" asp-action="Profile">Profile</a></li>
-                                <li><hr class="dropdown-divider"/></li>
-                                <li>
-                                    <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
-                                        <button type="submit" class="dropdown-item text-danger">Logout</button>
-                                    </form></li>
-                            </ul>
-                        </li>
-                    }
-                    else
-                    {
-                        <li class="nav-item me-2">
-                            <a class="btn btn-outline-primary" asp-controller="Account" asp-action="Login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn btn-primary" asp-controller="Account" asp-action="Register">Register</a>
-                        </li>
-                    }
-                </ul>
-            </div>
-        </div>
-    </nav>
-    
-    <!-- Secondary Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#subNavbar"
-                    aria-controls="subNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse justify-content-center" id="subNavbar">
-                <div class="d-flex justify-content-center w-100">
-                    <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item mx-4"><a class="nav-link text-white fw-bold custom-font" href="#">BOOK A STAY</a></li>
-                        <li class="nav-item mx-4"><a class="nav-link text-white fw-bold custom-font" href="#">MY STAYS</a></li>
-                        <li class="nav-item mx-4"><a class="nav-link text-white fw-bold custom-font" href="#">MY PETS</a></li>
-                        <li class="nav-item mx-4"><a class="nav-link text-white fw-bold custom-font" href="#">PROFILE</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
-    @* <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"> *@
-    @*     <div class="container-fluid"> *@
-    @*         <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PetHome_MVC_Front</a> *@
-    @*         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" *@
-    @*                 aria-expanded="false" aria-label="Toggle navigation"> *@
-    @*             <span class="navbar-toggler-icon"></span> *@
-    @*         </button> *@
-    @*         <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between"> *@
-    @*             <ul class="navbar-nav flex-grow-1"> *@
-    @*                 <li class="nav-item"> *@
-    @*                     <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a> *@
-    @*                 </li> *@
-    @*                 <li class="nav-item"> *@
-    @*                     <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> *@
-    @*                 </li> *@
-    @*             </ul> *@
-    @*             <partial name="_LoginPartial" /> *@
-    @*         </div> *@
-    @*     </div> *@
-    @* </nav> *@
-</header>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-2 fixed-top">
     <div class="container">
+        <!-- Brand -->
+        <a class="navbar-brand fw-bold fs-4 text-dark" asp-controller="Home" asp-action="Index">
+            PetHome
+        </a>
+
+        <!-- Toggler (for mobile) -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                <!-- Text-style links -->
+                <li class="nav-item me-3">
+                    <a class="nav-link fw-bold fs-5 text-dark" asp-controller="Home" asp-action="Pricing">Pricing</a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="nav-link fw-bold fs-5 text-dark" asp-controller="Home" asp-action="News">News</a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="nav-link fw-bold fs-5 text-dark" asp-controller="Home" asp-action="Contact">Contact</a>
+                </li>
+
+                <!-- Login/Register or User menu -->
+                @if (isLoggedIn)
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i> @userName
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" asp-controller="Account" asp-action="Profile">Profile</a></li>
+                            <li><hr class="dropdown-divider"/></li>
+                            <li>
+                                <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                    <button type="submit" class="dropdown-item text-danger">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item me-2">
+                        <button class="btn btn-primary px-4 rounded-pill fw-bold" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#loginModal">
+                            Login
+                        </button>
+                    </li>
+                    <li class="nav-item me-2">
+                        <button class="btn btn-primary px-4 rounded-pill fw-bold" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#registerModal">
+                            Register
+                        </button>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>
+</header>
+    @* <div class="container"> *@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
+    @* </div> *@
+    
 
     <footer class="border-top footer text-muted">
         <div class="container">
@@ -119,5 +99,18 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-</body>
+    @Html.Partial("_LoginModal", new LoginViewModel())
+    @Html.Partial("_RegisterModal", new RegisterAsOwnerViewModel())
+
+    <div class="position-fixed top-0 end-0 p-3" style="z-index: 1080">
+        <div id="successToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Registration successful! You can now log in.
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+    </body>
 </html>

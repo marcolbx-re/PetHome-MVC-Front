@@ -10,11 +10,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a54e3ae-65b6-4340-bdfa-9825cd81509a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/wwwroot/images/cat-dog.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wwwroot/images/cat1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wwwroot/images/dog1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wwwroot/images/dog2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wwwroot/images/pet.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/LoginViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/Profile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/RegisterAsOwnerViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Views/Shared/_LoginModal.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Views/Shared/_RegisterModal.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wwwroot/images/catwp.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wwwroot/images/dogw.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wwwroot/images/dogwp.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wwwroot/images/food.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wwwroot/images/med.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wwwroot/images/petting.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wwwroot/images/staffwp.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wwwroot/images/wash.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wwwroot/images/wp.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PetHome MVC Front/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PetHome MVC Front/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PetHome MVC Front.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PetHome MVC Front.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Home/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/Index.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Shared/_Layout.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Shared/_LoginPartial.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wwwroot/images/cat-dog.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wwwroot/images/cat1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wwwroot/images/dog1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wwwroot/images/dog2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wwwroot/images/pet.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,13 +47,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Models/LoginViewModel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Models/Profile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Models/RegisterAsOwnerViewModel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Views/Shared/_RegisterModal.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map" root0="FORCE_HIGHLIGHTING" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 4
-}]]></component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="35IESp9vzg4lsp7MNpT0ukIYvA8" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -42,9 +66,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Launch Settings Profile.PetHome MVC Front: IIS Express.executor": "Run",
+    ".NET Launch Settings Profile.PetHome MVC Front: IIS Express.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -112,12 +137,14 @@
       <option name="presentableId" value="Default" />
       <updated>1762789196444</updated>
       <workItem from="1762789204459" duration="6003000" />
+      <workItem from="1763024252849" duration="14973000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
@@ -137,6 +164,36 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Views/Shared/_LoginModal.cshtml</url>
+          <line>74</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Views/Shared/_LoginModal.cshtml</url>
+          <line>80</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Views/Shared/_LoginModal.cshtml</url>
+          <line>73</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Views/Shared/_LoginModal.cshtml</url>
+          <line>104</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Views/Shared/_LoginModal.cshtml</url>
+          <line>100</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Views/Shared/_LoginModal.cshtml</url>
+          <line>70</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
