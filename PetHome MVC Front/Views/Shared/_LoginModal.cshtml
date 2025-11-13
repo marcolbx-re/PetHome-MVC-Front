@@ -94,9 +94,8 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             loginModal.hide();
 
             // Update navbar or UI
-            alert('1111111');
             updateUIAfterLogin(profile);
-
+            updateAuthUI();
         } else {
             const error = await response.json();
             alert('Login failed: ' + (error?.message || 'Unknown error'));
@@ -110,17 +109,14 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
 // Example UI update function
 function updateUIAfterLogin(profile) {
     // Hide login/register buttons
-    alert('2222222');
     document.getElementById('loginBtn').style.display = 'none';
     document.getElementById('registerBtn').style.display = 'none';
-    alert('3333333');
     // Show user's name in navbar
     const userDisplay = document.getElementById('userDisplay');
     if (userDisplay) {
         userDisplay.textContent = `Hello, ${profile.fullName || profile.username}`;
         userDisplay.style.display = 'inline-block';
     }
-    alert('444444');
     // Show logout button
     const logoutBtn = document.getElementById('logoutBtn');
     if (logoutBtn) logoutBtn.style.display = 'inline-block';

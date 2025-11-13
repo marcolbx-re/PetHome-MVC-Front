@@ -15,73 +15,55 @@
     var userName = User?.Identity?.Name ?? "";
 }
 
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-2 fixed-top">
-    <div class="container">
-        <!-- Brand -->
-        <a class="navbar-brand fw-bold fs-4 text-dark" asp-controller="Home" asp-action="Index">
-            PetHome
-        </a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-2 fixed-top">
+        <div class="container">
+            <!-- Brand -->
+            <a class="navbar-brand fw-bold fs-4 text-dark" asp-controller="Home" asp-action="Index">
+                PetHome
+            </a>
 
-        <!-- Toggler (for mobile) -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-                aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <!-- Toggler (for mobile) -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                    aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <!-- Navbar links -->
-        <div class="collapse navbar-collapse" id="mainNavbar">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-                <!-- Text-style links -->
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
+                <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
+                    <li class="nav-item me-3">
+                        <a class="nav-link fw-bold fs-5 text-dark" asp-controller="Home" asp-action="Pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link fw-bold fs-5 text-dark" asp-controller="Home" asp-action="News">News</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link fw-bold fs-5 text-dark" asp-controller="Home" asp-action="Contact">Contact</a>
+                    </li>
+                </ul>
+
+                <!-- Auth buttons or user menu (handled dynamically by JS) -->
+                <ul class="navbar-nav align-items-center" id="authContainer"></ul>        
+            </div>
+        </div>
+    </nav>
+    <!-- 2nd Navbar -->
+    <nav id="secondaryNavbar" class="navbar navbar-expand-lg navbar-light bg-light shadow-lg"
+         style="display: none; position: fixed; top: 60px; width: 100%; z-index: 1020;">
+        <div class="container justify-content-center">
+            <ul class="navbar-nav mb-2 mb-lg-0 text-center">
                 <li class="nav-item me-3">
-                    <a class="nav-link fw-bold fs-5 text-dark" asp-controller="Home" asp-action="Pricing">Pricing</a>
+                    <a class="nav-link fw-bold fs-5 text-dark" href="/Booking/Create">Book A Stay</a>
                 </li>
                 <li class="nav-item me-3">
-                    <a class="nav-link fw-bold fs-5 text-dark" asp-controller="Home" asp-action="News">News</a>
+                    <a class="nav-link fw-bold fs-5 text-dark" href="/Booking/MyStays">My Stays</a>
                 </li>
                 <li class="nav-item me-3">
-                    <a class="nav-link fw-bold fs-5 text-dark" asp-controller="Home" asp-action="Contact">Contact</a>
+                    <a class="nav-link fw-bold fs-5 text-dark" href="/Pets/MyPets">My Pets</a>
                 </li>
-
-                <!-- Login/Register or User menu -->
-                @if (isLoggedIn)
-                {
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-circle"></i> @userName
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            <li><a class="dropdown-item" asp-controller="Account" asp-action="Profile">Profile</a></li>
-                            <li><hr class="dropdown-divider"/></li>
-                            <li>
-                                <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
-                                    <button type="submit" class="dropdown-item text-danger">Logout</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                }
-                else
-                {
-                    <li class="nav-item me-2">
-                        <button class="btn btn-primary px-4 rounded-pill fw-bold" 
-                                data-bs-toggle="modal" 
-                                data-bs-target="#loginModal">
-                            Login
-                        </button>
-                    </li>
-                    <li class="nav-item me-2">
-                        <button class="btn btn-primary px-4 rounded-pill fw-bold" 
-                                data-bs-toggle="modal" 
-                                data-bs-target="#registerModal">
-                            Register
-                        </button>
-                    </li>
-                }
             </ul>
         </div>
-    </div>
-</nav>
+    </nav>
 </header>
     @* <div class="container"> *@
         <main role="main" class="pb-3">
@@ -98,6 +80,115 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const authContainer = document.getElementById('authContainer');
+
+    const token = localStorage.getItem('jwtToken');
+    const userName = localStorage.getItem('userFullName') || localStorage.getItem('userEmail');
+
+    if (token && userName) {
+        authContainer.innerHTML = `
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-circle"></i> ${userName}
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="/Account/Profile">Profile</a></li>
+                    <li><hr class="dropdown-divider"/></li>
+                    <li><button class="dropdown-item text-danger" id="logoutBtn">Logout</button></li>
+                </ul>
+            </li>
+        `;
+
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('jwtToken');
+            localStorage.removeItem('userFullName');
+            localStorage.removeItem('userEmail');
+            location.reload();
+        });
+
+    } else {
+        authContainer.innerHTML = `
+            <li class="nav-item me-2">
+                <button id="loginBtn" class="btn btn-primary px-4 rounded-pill fw-bold" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#loginModal">
+                    Login
+                </button>
+            </li>
+            <li class="nav-item me-2">
+                <button id="registerBtn" class="btn btn-primary px-4 rounded-pill fw-bold" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#registerModal">
+                    Register
+                </button>
+            </li>
+        `;
+    }
+});
+</script>
+    <script>
+function updateAuthUI() {
+    const authContainer = document.getElementById('authContainer');
+    const secondaryNavbar = document.getElementById('secondaryNavbar');
+    const token = localStorage.getItem('jwtToken');
+    const userName = localStorage.getItem('userFullName') || localStorage.getItem('userEmail');
+
+    if (!authContainer) return;
+
+    if (token && userName) {
+        if (secondaryNavbar) secondaryNavbar.style.display = 'block';
+        // User logged in
+        authContainer.innerHTML = `
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+<i class="bi bi-person-circle">
+</i> <span class="fw-semibold">${userName}</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="/Account/Profile">Profile</a></li>
+                    <li><hr class="dropdown-divider"/></li>
+                    <li>
+                        <button class="dropdown-item text-danger" id="logoutBtn">Logout</button>
+                    </li>
+                </ul>
+            </li>
+        `;
+
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('jwtToken');
+            localStorage.removeItem('userFullName');
+            localStorage.removeItem('userEmail');
+            if (secondaryNavbar) secondaryNavbar.style.display = 'none';
+            updateAuthUI(); // refresh navbar immediately
+        });
+
+    } else {
+        if (secondaryNavbar) secondaryNavbar.style.display = 'none';
+        // User not logged in
+        authContainer.innerHTML = `
+            <li class="nav-item me-2">
+                <button id="loginBtn" class="btn btn-primary px-4 rounded-pill fw-bold"
+                        data-bs-toggle="modal" data-bs-target="#loginModal">
+                    Login
+                </button>
+            </li>
+            <li class="nav-item me-2">
+                <button id="registerBtn" class="btn btn-primary px-4 rounded-pill fw-bold"
+                        data-bs-toggle="modal" data-bs-target="#registerModal">
+                    Register
+                </button>
+            </li>
+        `;
+    }
+}
+
+// Run on initial load
+document.addEventListener('DOMContentLoaded', updateAuthUI);
+</script>
     @await RenderSectionAsync("Scripts", required: false)
     @Html.Partial("_LoginModal", new LoginViewModel())
     @Html.Partial("_RegisterModal", new RegisterAsOwnerViewModel())
