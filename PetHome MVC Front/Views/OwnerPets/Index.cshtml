@@ -3,15 +3,130 @@
     ViewData["Title"] = "My Pets";
 }
 
-<div class="container py-4 pt-lg-5">
-    <h2 class="fw-bold mb-4 text-center">My Pets</h2>
 
-    <div id="petsContainer" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        <!-- Pet cards will be injected here -->
+<section id="hero" class="position-relative text-light d-flex align-items-start" 
+         style="
+            background-image: url('@Url.Content("~/images/pets.jpg")');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position-x: center;
+            background-position-y: 20%;
+            min-height: 90vh;
+            padding-top: 4rem; /* optional spacing from top */
+         ">
+    <!-- Overlay for contrast -->
+    <div class="overlay position-absolute w-100 h-100" 
+         style="background-color: rgba(0, 0, 0, 0.1); top:0; left:0;"></div>
+
+    <div class="container-lg position-relative">
+        <div class="row">
+            <div class="col-12 col-md-8 text-center text-md-start mb-4 text-dark">
+                <!-- BIG Title -->
+                <h1 class="display-1 fw-bold" style="line-height: 1.1;">
+                    My Pets
+                </h1>
+
+                <!-- Description -->
+                <p class="lead fs-4 mb-4">
+                    Select one of your pets or register a new one!
+                </p>
+            </div>
+        </div>
+
+        <!-- Register Button -->
+        <div class="d-flex justify-content-start mb-4">
+            <a href="/OwnerPets/Create" 
+               class="btn btn-primary btn-lg rounded-pill fw-bold">
+                Register a New Pet
+            </a>
+        </div>
+
+        <!-- Pet Cards -->
+        <div id="petsContainer" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <!-- Pet cards will be injected here -->
+        </div>
+
+        <div id="loadingMessage" class="text-center fs-5 mt-4">Loading pets… 🐾</div>
     </div>
+</section>
+@* <section id="hero" class="position-relative text-light d-flex align-items-center"  *@
+@*          style=" *@
+@*             background-image: url('@Url.Content("~/images/pets.jpg")'); *@
+@*             background-size: cover; *@
+@*             background-repeat: no-repeat; *@
+@*             background-position-x: center; *@
+@*             background-position-y: 40%; *@
+@*             min-height: 90vh; *@
+@*          "> *@
+@*     <!-- Overlay for contrast --> *@
+@*     <div class="overlay position-absolute w-100 h-100" style="background-color: rgba(0, 0, 0, 0.4); top:0; left:0;"></div> *@
+@* *@
+@*     <div class="container-lg position-relative"> *@
+@*         <div class="row"> *@
+@*             <div class="col-12 col-md-8 text-center text-md-start"> *@
+@*                 <!-- BIG Title --> *@
+@*                 <h1 class="display-1 fw-bold" style="line-height: 1.1;"> *@
+@*                     My Pets *@
+@*                 </h1> *@
+@* *@
+@*                 <!-- Description --> *@
+@*                 <p class="lead fs-4 mb-4"> *@
+@*                     Select one of your pets or register a new one! *@
+@*                 </p> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </section> *@
 
-    <div id="loadingMessage" class="text-center fs-5">Loading pets… 🐾</div>
-</div>
+@* <section id="hero" class="position-relative text-light d-flex align-items-center"  *@
+@*          style=" *@
+@*             background-image: url('@Url.Content("~/images/pets.jpg")'); *@
+@*             background-size: cover; *@
+@*             background-repeat: no-repeat; *@
+@*             background-position-x: center; *@
+@*             background-position-y: 40%; *@
+@*             min-height: 40vh; *@
+@*          "> *@
+@*     <!-- Overlay for contrast --> *@
+@*     <div class="overlay position-absolute w-100 h-100" style="background-color: rgba(0, 0, 0, 0.4); top:0; left:0;"></div> *@
+@* *@
+@*     <div class="container-lg position-relative"> *@
+@*         <div class="row"> *@
+@*             <div class="col-12 col-md-8 text-center text-md-start"> *@
+@*                 <!-- BIG Title --> *@
+@*                 <h1 class="display-1 fw-bold" style="line-height: 1.1;"> *@
+@*                     My Pets *@
+@*                 </h1> *@
+@* *@
+@*                 <!-- Description --> *@
+@*                 <p class="lead fs-4 mb-4"> *@
+@*                     Select one of your pets or register a new one! *@
+@*                 </p> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </section> *@
+
+@* <div class="container py-4 pt-lg-5"> *@
+@* *@
+@*     <!-- Row with button --> *@
+@*     <div class="d-flex justify-content-start mb-3"> *@
+@*         <a href="/OwnerPets/Create"  *@
+@*            class="btn btn-primary btn rounded-pill fw-bold"> *@
+@*             Register a New Pet *@
+@*         </a> *@
+@*     </div> *@
+@* *@
+@*     <!-- Pet cards --> *@
+@*     <div id="petsContainer" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"> *@
+@*         <!-- Pet cards will be injected here --> *@
+@*     </div> *@
+@* *@
+@*     <div id="loadingMessage" class="text-center fs-5">Loading pets… 🐾</div> *@
+@* </div> *@
+
+
+
 
 @section Scripts {
     <script>
@@ -65,21 +180,19 @@
 
                         const cardHtml = `
                         <div class="col">
-                            <div class="compact-card-wrapper">
-                                <div class="card shadow-sm rounded-4 h-100 border-0 text-center compact-card p-3">
-                                    ${photoUrl ? `<img src="${photoUrl}" class="pet-img rounded-circle mb-2" alt="${pet.name || "Pet"}">` : ""}
-                            
-                                    <div class="card-body p-2">
-                                        <h5 class="card-title fw-bold mb-1">${pet.name || "Unnamed"}</h5>
-                                        <p class="mb-1 small"><strong>Breed:</strong> ${pet.breed || "Unknown"}</p>
-                                        <p class="mb-1 small"><strong>Gender:</strong> ${pet.gender || "Unknown"}</p>
-                                        <p class="mb-1 small"><strong>Type:</strong> ${pet.type || "Unknown"}</p>
-                                        <p class="mb-2 small"><strong>Age:</strong> ${age}</p>
-                            
-                                        <div class="d-grid gap-1">
-                                            <a href="/OwnerPets/Details/${pet.id}" class="btn btn-primary btn-sm rounded-pill">View</a>
-                                            <a href="/OwnerPets/Edit/${pet.id}" class="btn btn-outline-secondary btn-sm rounded-pill">Edit</a>
-                                        </div>
+                            <div class="compact-horizontal-card">
+                                ${photoUrl ? `<img src="${photoUrl}" class="pet-img" alt="${pet.name || "Pet"}">` : ""}
+                                <div class="compact-horizontal-card-body">
+                                    <div class="pet-info">
+                                        <h5 class="fw-bold mb-1">${pet.name || "Unnamed"}</h5>
+                                        <p class="mb-0"><strong>Breed:</strong> ${pet.breed || "Unknown"}</p>
+                                        <p class="mb-0"><strong>Gender:</strong> ${pet.gender || "Unknown"}</p>
+                                        <p class="mb-0"><strong>Type:</strong> ${pet.type || "Unknown"}</p>
+                                        <p class="mb-0"><strong>Age:</strong> ${age}</p>
+                                    </div>
+                                    <div class="pet-buttons mt-2">
+                                        <a href="/OwnerPets/Details/${pet.id}" class="btn btn-primary btn-sm rounded-pill">View</a>
+                                        <a href="/OwnerPets/Edit/${pet.id}" class="btn btn-outline-secondary btn-sm rounded-pill">Edit</a>
                                     </div>
                                 </div>
                             </div>

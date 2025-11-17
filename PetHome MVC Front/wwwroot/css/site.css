@@ -57,3 +57,51 @@ body {
     max-width: 400px;  /* set a fixed width */
     margin: 0 auto;    /* center horizontally */
 }
+
+.compact-horizontal-card {
+    max-width: 450px;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center; /* vertical center */
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.95); /* semi-transparent white */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.compact-horizontal-card img.pet-img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1rem;
+    flex-shrink: 0; /* prevent shrinking */
+}
+
+.compact-horizontal-card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.compact-horizontal-card-body .pet-info {
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.compact-horizontal-card-body .pet-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.pets-page {
+    background-image: url('/images/staffwp.jpeg'); /* replace with your image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding-top: 3rem; /* ensure content not hidden by navbar */
+    color: white;       /* text readable on background */
+}

@@ -1,0 +1,9 @@
+.pets-page {
+    background-image: url('/images/staffwp.jpeg'); /* replace with your image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding-top: 3rem; /* ensure content not hidden by navbar */
+    color: white;       /* text readable on background */
+}
