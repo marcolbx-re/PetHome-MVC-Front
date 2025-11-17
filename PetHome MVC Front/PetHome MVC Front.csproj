@@ -19,8 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controllers\Front Desk\" />
     <Folder Include="Models\Account\" />
     <Folder Include="Views\Account\" />
+    <Folder Include="Views\Front Desk\" />
   </ItemGroup>
 
 </Project>

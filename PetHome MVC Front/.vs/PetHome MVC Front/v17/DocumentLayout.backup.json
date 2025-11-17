@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Marco\\Documents\\GitHub\\PetHome-MVC-Front\\PetHome MVC Front\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3EDB43EB-D2FC-47DC-9372-42CB322CBBE5}|PetHome MVC Front.csproj|c:\\users\\marco\\documents\\github\\pethome-mvc-front\\pethome mvc front\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3EDB43EB-D2FC-47DC-9372-42CB322CBBE5}|PetHome MVC Front.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3EDB43EB-D2FC-47DC-9372-42CB322CBBE5}|PetHome MVC Front.csproj|c:\\users\\marco\\documents\\github\\pethome-mvc-front\\pethome mvc front\\views\\ownerpets\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3EDB43EB-D2FC-47DC-9372-42CB322CBBE5}|PetHome MVC Front.csproj|solutionrelative:views\\ownerpets\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EDB43EB-D2FC-47DC-9372-42CB322CBBE5}|PetHome MVC Front.csproj|c:\\users\\marco\\documents\\github\\pethome-mvc-front\\pethome mvc front\\controllers\\front desk\\ownerpetscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EDB43EB-D2FC-47DC-9372-42CB322CBBE5}|PetHome MVC Front.csproj|solutionrelative:controllers\\front desk\\ownerpetscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Marco\\Documents\\GitHub\\PetHome-MVC-Front\\PetHome MVC Front\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\Marco\\Documents\\GitHub\\PetHome-MVC-Front\\PetHome MVC Front\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "OwnerPetsController.cs",
+              "DocumentMoniker": "C:\\Users\\Marco\\Documents\\GitHub\\PetHome-MVC-Front\\PetHome MVC Front\\Controllers\\Front Desk\\OwnerPetsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\Front Desk\\OwnerPetsController.cs",
+              "ToolTip": "C:\\Users\\Marco\\Documents\\GitHub\\PetHome-MVC-Front\\PetHome MVC Front\\Controllers\\Front Desk\\OwnerPetsController.cs",
+              "RelativeToolTip": "Controllers\\Front Desk\\OwnerPetsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T15:37:35.935Z",
+              "WhenOpened": "2025-11-17T11:24:29.503Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Marco\\Documents\\GitHub\\PetHome-MVC-Front\\PetHome MVC Front\\Views\\OwnerPets\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\OwnerPets\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Marco\\Documents\\GitHub\\PetHome-MVC-Front\\PetHome MVC Front\\Views\\OwnerPets\\Index.cshtml",
+              "RelativeToolTip": "Views\\OwnerPets\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-17T11:22:47.537Z",
               "EditorCaption": ""
             }
           ]

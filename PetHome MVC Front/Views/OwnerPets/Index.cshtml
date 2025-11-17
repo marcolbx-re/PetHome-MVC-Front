@@ -1,0 +1,100 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "My Pets";
+}
+
+<div class="container py-4 pt-lg-5">
+    <h2 class="fw-bold mb-4 text-center">My Pets</h2>
+
+    <div id="petsContainer" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <!-- Pet cards will be injected here -->
+    </div>
+
+    <div id="loadingMessage" class="text-center fs-5">Loading pets… 🐾</div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+
+            async function loadPets() {
+
+                const container = document.getElementById("petsContainer");
+                const loading = document.getElementById("loadingMessage");
+
+                // Get token and ownerId from localStorage
+                const token = localStorage.getItem("jwtToken");
+                const ownerId = localStorage.getItem("userOwnerId"); // adjust if stored differently
+                if (!token || !ownerId) {
+                    loading.textContent = "You are not authenticated or ownerId is missing.";
+                    return;
+                }
+
+                try {
+                    const response = await fetch(`http://localhost:5001/api/owners/${ownerId}/pets`, {
+                        headers: {
+                            "Authorization": `Bearer ${token}`
+                        }
+                    });
+
+                    if (!response.ok) {
+                        loading.textContent = `Error fetching : ${response.status} ${response.statusText}`;
+                        return;
+                    }
+
+                    const petsData = await response.json();
+                    const pets = petsData.items; // <-- important!
+
+                    if (!pets || pets.length === 0) {
+                        loading.textContent = "You have no pets registered yet. 🐾";
+                        return;
+                    }
+
+                    // Clear loading message
+                    loading.style.display = "none";
+
+                    // Render each pet as a Bootstrap card
+                    pets.forEach(pet => {
+                        const age = pet.birthDate
+                            ? Math.floor((new Date() - new Date(pet.birthDate)) / (1000 * 60 * 60 * 24 * 365)) + " years"
+                            : "Unknown";
+
+                        const photoUrl = pet.photos && pet.photos.length > 0
+                            ? pet.photos[0].url
+                            : '/images/catwp/jpg'; // fallback image if no photo
+
+                        const cardHtml = `
+                        <div class="col">
+                            <div class="compact-card-wrapper">
+                                <div class="card shadow-sm rounded-4 h-100 border-0 text-center compact-card p-3">
+                                    ${photoUrl ? `<img src="${photoUrl}" class="pet-img rounded-circle mb-2" alt="${pet.name || "Pet"}">` : ""}
+                            
+                                    <div class="card-body p-2">
+                                        <h5 class="card-title fw-bold mb-1">${pet.name || "Unnamed"}</h5>
+                                        <p class="mb-1 small"><strong>Breed:</strong> ${pet.breed || "Unknown"}</p>
+                                        <p class="mb-1 small"><strong>Gender:</strong> ${pet.gender || "Unknown"}</p>
+                                        <p class="mb-1 small"><strong>Type:</strong> ${pet.type || "Unknown"}</p>
+                                        <p class="mb-2 small"><strong>Age:</strong> ${age}</p>
+                            
+                                        <div class="d-grid gap-1">
+                                            <a href="/OwnerPets/Details/${pet.id}" class="btn btn-primary btn-sm rounded-pill">View</a>
+                                            <a href="/OwnerPets/Edit/${pet.id}" class="btn btn-outline-secondary btn-sm rounded-pill">Edit</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                        container.insertAdjacentHTML("beforeend", cardHtml);
+                    });
+
+                } catch (err) {
+                    loading.textContent = `Error fetching petsss: ${err}`;
+                    console.error(err);
+                }
+            }
+
+            await loadPets();
+        })
+    </script>
+}

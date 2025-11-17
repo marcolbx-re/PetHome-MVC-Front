@@ -20,3 +20,40 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+.pet-img {
+    width: 200px;       /* smaller size */
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%; /* circular */
+    border: 3px solid #ddd;
+    margin: 0 auto;     /* center image */
+}
+
+.compact-card {
+    padding: 0.5rem;        /* smaller padding */
+}
+
+.compact-card .card-body {
+    padding: 0.5rem;        /* reduce text padding */
+}
+
+.compact-card .card-title {
+    font-size: 1rem;        /* smaller title */
+}
+
+.compact-card p {
+    font-size: 0.8rem;      /* smaller text */
+    margin-bottom: 0.25rem;
+}
+
+.compact-card .btn {
+    font-size: 0.8rem;      /* smaller buttons */
+    padding: 0.25rem 0.5rem;
+}
+
+.compact-card-wrapper {
+    max-width: 400px;  /* set a fixed width */
+    margin: 0 auto;    /* center horizontally */
+}
