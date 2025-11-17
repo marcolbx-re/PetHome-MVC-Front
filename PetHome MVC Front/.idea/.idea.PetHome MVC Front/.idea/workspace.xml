@@ -10,13 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a54e3ae-65b6-4340-bdfa-9825cd81509a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/wwwroot/css/myPets.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wwwroot/images/achu.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wwwroot/images/owners.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wwwroot/images/pets.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PetHome MVC Front/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PetHome MVC Front/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/OwnerPets/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/OwnerPets/Index.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wwwroot/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/wwwroot/css/site.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +137,7 @@
       <workItem from="1763024252849" duration="14973000" />
       <workItem from="1763046988230" duration="3416000" />
       <workItem from="1763373322846" duration="5171000" />
-      <workItem from="1763378728969" duration="6718000" />
+      <workItem from="1763378728969" duration="7555000" />
     </task>
     <servers />
   </component>
@@ -170,11 +164,6 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Views/OwnerPets/Index.cshtml</url>
-          <line>105</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
